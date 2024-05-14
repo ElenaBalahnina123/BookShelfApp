@@ -1,9 +1,5 @@
-package com.example.waifuapp.repository
+package com.example.waifuapp.domain
 
-import android.util.Log
-import com.example.waifuapp.network.Waifu
-import com.example.waifuapp.network.WaifuService
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 interface WaifuRepository {
@@ -12,7 +8,7 @@ interface WaifuRepository {
 
 class WaifuRepositoryImpl @Inject constructor(
     private val waifuService: WaifuService
-) : WaifuRepository{
+) : WaifuRepository {
     override fun getWaifu() : Waifu {
         return waifuService.getWaifu().get()
 

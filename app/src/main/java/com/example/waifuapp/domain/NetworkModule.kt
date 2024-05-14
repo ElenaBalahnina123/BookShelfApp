@@ -1,4 +1,4 @@
-package com.example.waifuapp.network
+package com.example.waifuapp.domain
 
 import dagger.Module
 import dagger.Provides

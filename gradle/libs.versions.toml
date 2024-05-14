@@ -3,13 +3,14 @@ activityCompose = "1.9.0"
 adapterRxjava = "2.1.0"
 agp = "8.3.2"
 compose = "1.0.0-beta01"
-glide = "4.13.0"
+glide = "4.16.0"
 kotlin = "1.9.23"
 coreKtx = "1.13.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
+landscapistGlide = "2.3.3"
 lifecycleViewmodelCompose = "2.7.0"
 material = "1.11.0"
 lifecycleViewmodelKtx = "2.7.0"
@@ -43,6 +44,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+landscapist-glide = { module = "com.github.skydoves:landscapist-glide", version.ref = "landscapistGlide" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 dagger = {group = "com.google.dagger", name = "dagger", version.ref = "dagger" }

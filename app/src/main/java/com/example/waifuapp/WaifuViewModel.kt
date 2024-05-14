@@ -1,25 +1,15 @@
 package com.example.waifuapp
 
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bumptech.glide.Glide
-import com.example.waifuapp.repository.WaifuRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.*
+import com.example.waifuapp.domain.WaifuRepository
 import javax.inject.Inject
 
 class WaifuViewModel @Inject constructor(
-   private val repository: WaifuRepository,
+    private val repository: WaifuRepository,
 ) : ViewModel() {
 
-    fun getWaifu() : WaifuScreenData {
-       return WaifuScreenData(
+    fun getWaifu() : WaifuScreenState.WaifuScreenData {
+       return WaifuScreenState.WaifuScreenData(
                imgWaifu = repository.getWaifu().url
            )
     }
@@ -27,4 +17,4 @@ class WaifuViewModel @Inject constructor(
 
 data class WaifuData(
         val imgWaifu : String
-    )
+)

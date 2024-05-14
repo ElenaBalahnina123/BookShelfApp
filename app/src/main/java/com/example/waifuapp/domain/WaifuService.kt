@@ -1,6 +1,7 @@
-package com.example.waifuapp.network
+package com.example.waifuapp.domain
 
-import retrofit2.Response
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import retrofit2.http.GET
 import java.util.concurrent.CompletableFuture
 
@@ -10,6 +11,8 @@ interface WaifuService {
     fun getWaifu() : CompletableFuture<Waifu>
 }
 
+@Serializable
 data class Waifu(
+    @SerialName("url")
     val url : String
 )
