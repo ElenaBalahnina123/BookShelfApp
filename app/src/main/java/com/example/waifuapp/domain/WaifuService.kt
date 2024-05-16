@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture
 
 interface WaifuService {
     @GET("sfw/neko")
-    fun getWaifu() : CompletableFuture<Waifu>
+    suspend fun getWaifu() : Waifu
 }
 
 @Serializable
