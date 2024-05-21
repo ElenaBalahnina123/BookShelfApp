@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
-            WaifuScreen(waifuScreenData = viewModel.state)
+            WaifuScreen(waifuScreenData = viewModel.bookFlow())
         }
     }
 }

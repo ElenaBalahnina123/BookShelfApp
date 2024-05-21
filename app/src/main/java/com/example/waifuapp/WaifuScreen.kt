@@ -1,7 +1,10 @@
 package com.example.waifuapp
 
 import android.util.Log
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -14,9 +17,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 sealed class WaifuScreenState {
@@ -24,7 +30,8 @@ sealed class WaifuScreenState {
     data object Loading : WaifuScreenState()
 
     data class WaifuScreenData(
-        val imgWaifu: String
+        val imgWaifu: String,
+        val title: String
     ) : WaifuScreenState()
 
     data class Error(
@@ -36,7 +43,7 @@ sealed class WaifuScreenState {
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun WaifuScreen(
-    waifuScreenData: StateFlow<WaifuScreenState>
+    waifuScreenData: Flow<WaifuScreenState>
 ) {
     Scaffold() {
         Column(
@@ -47,7 +54,7 @@ fun WaifuScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            val waifu by waifuScreenData.collectAsState()
+            val waifu by waifuScreenData.collectAsState("")
 
             when (waifu) {
                 is WaifuScreenState.Error -> {
@@ -64,12 +71,20 @@ fun WaifuScreen(
                 }
 
                 is WaifuScreenState.WaifuScreenData -> {
-                    GlideImage(model = (waifu as WaifuScreenState.WaifuScreenData).imgWaifu, contentDescription = null, modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+                        GlideImage(
+                            model = (waifu as WaifuScreenState.WaifuScreenData).imgWaifu, contentDescription = null,
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .fillMaxSize(0.4f)
+
+                        )
+                        Text(text = (waifu as WaifuScreenState.WaifuScreenData).title,modifier = Modifier
+                            .padding(8.dp))
+                    }
                 }
 
-                WaifuScreenState.Initial -> TODO()
+                WaifuScreenState.Initial -> Text(text = "")
             }
 
         }

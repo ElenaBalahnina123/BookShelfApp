@@ -7,13 +7,13 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 interface WaifuRepository {
-     suspend fun getWaifu() : Waifu
+     suspend fun getWaifu() : VolumeInfo
 }
 
 class WaifuRepositoryImpl @Inject constructor(
     private val waifuService: WaifuService
 ) : WaifuRepository {
-    override suspend fun getWaifu() : Waifu {
+    override suspend fun getWaifu() : VolumeInfo {
         return waifuService.getWaifu()
 
     }

@@ -13,7 +13,8 @@ class NetworkModule {
     fun provideRetrofit() : Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://api.waifu.pics/")
+//            .baseUrl("https://api.waifu.pics/")
+            .baseUrl("https://www.googleapis.com/books/v1/")
             .build()
     }
 
