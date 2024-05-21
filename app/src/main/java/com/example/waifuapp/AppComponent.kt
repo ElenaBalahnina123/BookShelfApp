@@ -1,18 +1,15 @@
 package com.example.waifuapp
 
-import com.example.waifuapp.network.NetworkModule
-import com.example.waifuapp.repository.RepositoryModule
+import com.example.waifuapp.domain.NetworkModule
+import com.example.waifuapp.domain.RepositoryModule
 
 import dagger.Component
 import dagger.Module
-import javax.inject.Singleton
 
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
     fun inject(activity: MainActivity)
-
-
 }
 
 

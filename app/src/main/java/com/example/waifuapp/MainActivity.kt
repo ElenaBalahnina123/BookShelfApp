@@ -3,6 +3,7 @@ package com.example.waifuapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.collectAsState
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
-            WaifuScreen(waifuScreenData = viewModel.getWaifu() )
+            WaifuScreen(waifuScreenData = viewModel.bookFlow())
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.waifuapp.repository
+package com.example.waifuapp.domain
 
 import dagger.Binds
 import dagger.Module

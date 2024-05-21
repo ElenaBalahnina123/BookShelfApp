@@ -1,4 +1,4 @@
-package com.example.waifuapp.network
+package com.example.waifuapp.domain
 
 import dagger.Module
 import dagger.Provides
@@ -13,7 +13,8 @@ class NetworkModule {
     fun provideRetrofit() : Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://api.waifu.pics/")
+//            .baseUrl("https://api.waifu.pics/")
+            .baseUrl("https://www.googleapis.com/books/v1/")
             .build()
     }
 
