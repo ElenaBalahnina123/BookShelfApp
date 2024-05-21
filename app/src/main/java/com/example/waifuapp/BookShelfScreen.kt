@@ -1,7 +1,6 @@
 package com.example.waifuapp
 
 import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,52 +16,50 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 
-sealed class WaifuScreenState {
-    data object Initial : WaifuScreenState()
-    data object Loading : WaifuScreenState()
+sealed class BookShelfScreenState {
+    data object Initial : BookShelfScreenState()
+    data object Loading : BookShelfScreenState()
 
     data class WaifuScreenData(
         val imgWaifu: String,
         val title: String
-    ) : WaifuScreenState()
+    ) : BookShelfScreenState()
 
     data class Error(
         val err: Throwable
-    ) : WaifuScreenState()
+    ) : BookShelfScreenState()
 }
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun WaifuScreen(
-    waifuScreenData: Flow<WaifuScreenState>
+fun BookShelfScreen(
+    bookShelfScreenStateFlow: Flow<BookShelfScreenState>
 ) {
     Scaffold() {
         Column(
             modifier = Modifier
                 .padding(it)
                 .fillMaxWidth()
+
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            val waifu by waifuScreenData.collectAsState("")
+            val bookShelf by bookShelfScreenStateFlow.collectAsState("")
 
-            when (waifu) {
-                is WaifuScreenState.Error -> {
+            when (bookShelf) {
+                is BookShelfScreenState.Error -> {
                     Text(text = "Ошибка")
-                    Log.d("OLOLO", (waifu as WaifuScreenState.Error).err.toString())
+                    Log.d("OLOLO", (bookShelf as BookShelfScreenState.Error).err.toString())
                 }
 
-                is WaifuScreenState.Loading -> {
+                is BookShelfScreenState.Loading -> {
                     CircularProgressIndicator(
                         modifier = Modifier.width(64.dp),
                         color = MaterialTheme.colorScheme.secondary,
@@ -70,21 +67,21 @@ fun WaifuScreen(
                     )
                 }
 
-                is WaifuScreenState.WaifuScreenData -> {
+                is BookShelfScreenState.WaifuScreenData -> {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                         GlideImage(
-                            model = (waifu as WaifuScreenState.WaifuScreenData).imgWaifu, contentDescription = null,
+                            model = (bookShelf as BookShelfScreenState.WaifuScreenData).imgWaifu, contentDescription = null,
                             modifier = Modifier
                                 .padding(8.dp)
                                 .fillMaxSize(0.4f)
 
                         )
-                        Text(text = (waifu as WaifuScreenState.WaifuScreenData).title,modifier = Modifier
+                        Text(text = (bookShelf as BookShelfScreenState.WaifuScreenData).title,modifier = Modifier
                             .padding(8.dp))
                     }
                 }
 
-                WaifuScreenState.Initial -> Text(text = "")
+                BookShelfScreenState.Initial -> Text(text = "")
             }
 
         }

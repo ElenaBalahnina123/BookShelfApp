@@ -2,7 +2,7 @@ package com.example.waifuapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.waifuapp.domain.WaifuRepository
+import com.example.waifuapp.domain.BookShelfRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class WaifuViewModel @Inject constructor(
-    private val repository: WaifuRepository,
+class BookShelfViewModel @Inject constructor(
+    private val repository: BookShelfRepository,
 ) : ViewModel() {
 
     private val mutableStateFlow = MutableStateFlow<BookStateVM>(BookStateVM.Initial)
@@ -22,20 +22,20 @@ class WaifuViewModel @Inject constructor(
       uiFlow()
     }
 
-     fun bookFlow() : Flow<WaifuScreenState> {
+     fun bookFlow() : Flow<BookShelfScreenState> {
         return state.map { it.toScreen() }
     }
 
 
-    private fun BookStateVM.toScreen(): WaifuScreenState {
+    private fun BookStateVM.toScreen(): BookShelfScreenState {
         return when(this) {
-            is BookStateVM.Error -> WaifuScreenState.Error(err = err)
-            is  BookStateVM.Loading -> WaifuScreenState.Loading
-            is BookStateVM.BookData -> WaifuScreenState.WaifuScreenData(
+            is BookStateVM.Error -> BookShelfScreenState.Error(err = err)
+            is  BookStateVM.Loading -> BookShelfScreenState.Loading
+            is BookStateVM.BookData -> BookShelfScreenState.WaifuScreenData(
                 imgWaifu = imgBook,
                 title = title
             )
-            is BookStateVM.Initial -> WaifuScreenState.Initial
+            is BookStateVM.Initial -> BookShelfScreenState.Initial
         }
     }
 
@@ -46,8 +46,8 @@ class WaifuViewModel @Inject constructor(
             mutableStateFlow.value = BookStateVM.Loading
             mutableStateFlow.value = try {
                 BookStateVM.BookData(
-                    imgBook = repository.getWaifu().volumeInfo.imageLinks.thumbnail,
-                    title = repository.getWaifu().volumeInfo.title
+                    imgBook = repository.getBookShelf().volumeInfo.imageLinks.thumbnail,
+                    title = repository.getBookShelf().volumeInfo.title
                 )
             } catch (err : Throwable) {
                 BookStateVM.Error(err)

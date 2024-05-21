@@ -13,14 +13,13 @@ class NetworkModule {
     fun provideRetrofit() : Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-//            .baseUrl("https://api.waifu.pics/")
             .baseUrl("https://www.googleapis.com/books/v1/")
             .build()
     }
 
     @Provides
-    fun provideRetrofitService(retrofit: Retrofit) : WaifuService {
-        return retrofit.create(WaifuService::class.java)
+    fun provideRetrofitService(retrofit: Retrofit) : BookShelfService {
+        return retrofit.create(BookShelfService::class.java)
     }
 }
 

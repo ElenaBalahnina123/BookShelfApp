@@ -6,5 +6,5 @@ import dagger.Module
 @Module
 abstract class RepositoryModule{
     @Binds
-    abstract fun bindRepository(repositoryImpl: WaifuRepositoryImpl) : WaifuRepository
+    abstract fun bindRepository(repositoryImpl: BookShelfRepositoryImpl) : BookShelfRepository
 }
