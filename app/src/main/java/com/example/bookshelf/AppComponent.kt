@@ -1,7 +1,7 @@
-package com.example.waifuapp
+package com.example.bookshelf
 
-import com.example.waifuapp.domain.NetworkModule
-import com.example.waifuapp.domain.RepositoryModule
+import com.example.bookshelf.domain.NetworkModule
+import com.example.bookshelf.domain.RepositoryModule
 
 import dagger.Component
 import dagger.Module

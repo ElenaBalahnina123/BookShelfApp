@@ -1,4 +1,4 @@
-package com.example.waifuapp.domain
+package com.example.bookshelf.domain
 
 import dagger.Module
 import dagger.Provides

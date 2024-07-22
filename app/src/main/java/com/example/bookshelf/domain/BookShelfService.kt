@@ -1,21 +1,30 @@
-package com.example.waifuapp.domain
+package com.example.bookshelf.domain
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface BookShelfService {
-    @GET("volumes/s1gVAAAAYAAJ")
-    suspend fun getBookShelf() : VolumeInfo
+    @GET("volumes")
+    suspend fun getBookShelf(
+        @Query("q") query : String,
+        @Query("maxResults") maxResults : Int
+    ) : Items
 }
+
+@Serializable
+data class Items(
+    @SerialName("items")
+    val items : List<VolumeInfo>
+)
 
 @Serializable
 data class VolumeInfo (
     @SerialName("volumeInfo")
     val volumeInfo : ImageLinks,
 )
-
 
 @Serializable
 data class ImageLinks(

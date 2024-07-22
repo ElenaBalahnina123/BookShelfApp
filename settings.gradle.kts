@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "WaifuApp"
+rootProject.name = "BookShelfApp"
 include(":app")
  

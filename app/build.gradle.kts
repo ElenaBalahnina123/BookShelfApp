@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.waifuapp"
+    namespace = "com.example.bookshelf"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.waifuapp"
+        applicationId = "com.example.bookshelf"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -74,4 +74,6 @@ dependencies {
     kapt (libs.glide.compiler)
     implementation (libs.glide)
     implementation (libs.compose)
+
+
 }
