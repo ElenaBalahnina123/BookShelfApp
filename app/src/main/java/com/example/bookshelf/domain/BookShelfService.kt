@@ -29,7 +29,7 @@ data class VolumeInfo (
 @Serializable
 data class ImageLinks(
     @SerialName("imageLinks")
-    val imageLinks : Thumbnail,
+    val imageLinks : Thumbnail?,
     @SerialName("title")
     val title : String
 )

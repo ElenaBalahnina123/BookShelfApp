@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -41,23 +43,20 @@ fun BookShelfScreen(
             modifier = Modifier
                 .padding(it)
                 .fillMaxWidth()
-
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             val bookShelf by bookShelfScreenStateFlow.collectAsState(emptyList())
-                LazyColumn(
-                    contentPadding = PaddingValues(4.dp)
-                ) {
-                    itemsIndexed(bookShelf) {_, book ->
-                        BookItem(book = book)
-                    }
-            }
-
+            LazyColumn(
+                contentPadding = PaddingValues(4.dp)
+            ) {
+                items(bookShelf) {  book ->
+                    BookItem(book = book)
                 }
-
+            }
         }
+
+    }
 
 }
 
@@ -65,8 +64,8 @@ fun BookShelfScreen(
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun BookItem(
-   book: Book
-   ) {
+    book: Book
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -75,14 +74,12 @@ fun BookItem(
             containerColor = Color.White,
         ),
     ) {
-
         Row {
             GlideImage(
                 model = book.imgBook,
                 contentDescription = null,
                 modifier = Modifier
-                    .height(150.dp)
-                    .aspectRatio(0.7f)
+                    .size(150.dp, 107.dp)
             )
             Text(text = book.title)
         }

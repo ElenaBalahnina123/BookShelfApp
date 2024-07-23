@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,19 +28,33 @@ class BookShelfViewModel @Inject constructor(
       uiFlow()
     }
 
-    private fun uiFlow(query: String = "сарамаас", maxResults: Int = 20) {
+    private fun uiFlow(query: String = "сарамаас", maxResults: Int = 40) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                mutableStateFlow.value = emptyList()
                 repository.getBookShelf(query, maxResults)
-            }.onSuccess { bData ->
-                mutableStateFlow.value = bData.map {
-                    Book(
-                        imgBook = it.imgBook,
-                        title = it.title
-                    )
-                }
+            }.onSuccess { list ->
+                mutableStateFlow.value = list
+            }.onFailure {
+                Log.e("ERR","error",it)
             }
+//            mutableStateFlow.value = runCatching {
+//                repository.getBookShelf(query, maxResults)
+//            }.fold(
+//                onSuccess = { it },
+//                onFailure = { emptyList() }
+//            )
+//
+//            runCatching {
+//                mutableStateFlow.value = emptyList()
+//                repository.getBookShelf(query, maxResults)
+//            }.onSuccess { bData ->
+//                mutableStateFlow.value = bData.map {
+//                    Book(
+//                        imgBook = it.imgBook,
+//                        title = it.title
+//                    )
+//                }
+//            }
         }
     }
 }

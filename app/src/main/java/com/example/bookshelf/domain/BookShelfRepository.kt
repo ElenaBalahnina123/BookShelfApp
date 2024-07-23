@@ -12,15 +12,14 @@ class BookShelfRepositoryImpl @Inject constructor(
     override suspend fun getBookShelf(query : String,maxResults : Int) : List<Book> {
         return bookService.getBookShelf(query, maxResults).items.map {
             Book(
-                imgBook = it.volumeInfo.imageLinks.thumbnail,
+                imgBook = it.volumeInfo.imageLinks?.thumbnail,
                 title = it.volumeInfo.title
             )
         }
-
     }
 }
 
 data class Book(
-    val imgBook : String,
+    val imgBook : String?,
     val title : String,
 )
