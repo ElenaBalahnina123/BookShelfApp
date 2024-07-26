@@ -77,5 +77,7 @@ dependencies {
     implementation (libs.glide)
     implementation (libs.compose)
 
+    implementation (libs.androidx.paging.runtime)
+    implementation (libs.androidx.paging.compose)
 
 }

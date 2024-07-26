@@ -13,7 +13,10 @@ class BookShelfRepositoryImpl @Inject constructor(
         return bookService.getBookShelf(query, maxResults).items.map {
             Book(
                 imgBook = it.volumeInfo.imageLinks?.thumbnail,
-                title = it.volumeInfo.title
+                title = it.volumeInfo.title,
+                previewLink = it.volumeInfo.previewLink,
+                description = it.volumeInfo.description,
+                author = it.volumeInfo.authors
             )
         }
     }
@@ -22,4 +25,7 @@ class BookShelfRepositoryImpl @Inject constructor(
 data class Book(
     val imgBook : String?,
     val title : String,
+    val previewLink : String?,
+    val description : String?,
+    val author : List<String>?
 )

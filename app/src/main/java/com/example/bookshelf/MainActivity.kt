@@ -15,7 +15,11 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
-            BookShelfScreen(bookShelfScreenStateFlow = viewModel.state)
+            BookShelfScreen(
+                bookShelfScreenStateFlow = viewModel.state,
+                onClickSearch = viewModel::onSearchClick,
+                onQueryChanged = viewModel::onQueryChanged,
+                queryFlow = viewModel.searchFlow,)
         }
     }
 }

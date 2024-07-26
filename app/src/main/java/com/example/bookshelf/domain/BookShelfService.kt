@@ -10,7 +10,7 @@ interface BookShelfService {
     @GET("volumes")
     suspend fun getBookShelf(
         @Query("q") query : String,
-        @Query("maxResults") maxResults : Int
+        @Query("maxResults") maxResults : Int,
     ) : Items
 }
 
@@ -31,7 +31,13 @@ data class ImageLinks(
     @SerialName("imageLinks")
     val imageLinks : Thumbnail?,
     @SerialName("title")
-    val title : String
+    val title : String,
+    @SerialName("previewLink")
+    val previewLink : String?,
+    @SerialName("description")
+    val description : String?,
+    @SerialName("authors")
+    val authors : List<String>?
 )
 
 @Serializable
