@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.waifuapp"
+    namespace = "com.example.bookshelf"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.waifuapp"
+        applicationId = "com.example.bookshelf"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -53,6 +53,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logger)
     implementation(libs.retrofit)
     implementation (libs.converter.gson)
     implementation (libs.retrofit2.kotlinx.serialization.converter)
@@ -74,4 +76,8 @@ dependencies {
     kapt (libs.glide.compiler)
     implementation (libs.glide)
     implementation (libs.compose)
+
+    implementation (libs.androidx.paging.runtime)
+    implementation (libs.androidx.paging.compose)
+
 }

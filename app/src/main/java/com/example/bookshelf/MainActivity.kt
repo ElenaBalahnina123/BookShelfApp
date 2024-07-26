@@ -1,4 +1,4 @@
-package com.example.waifuapp
+package com.example.bookshelf
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,7 +15,11 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
-            BookShelfScreen(bookShelfScreenStateFlow = viewModel.bookFlow())
+            BookShelfScreen(
+                bookShelfScreenStateFlow = viewModel.state,
+                onClickSearch = viewModel::onSearchClick,
+                onQueryChanged = viewModel::onQueryChanged,
+                queryFlow = viewModel.searchFlow,)
         }
     }
 }

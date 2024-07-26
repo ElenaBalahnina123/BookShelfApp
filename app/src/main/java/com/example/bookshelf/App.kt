@@ -1,4 +1,4 @@
-package com.example.waifuapp
+package com.example.bookshelf
 
 import android.app.Application
 

@@ -1,4 +1,4 @@
-package com.example.waifuapp
+package com.example.bookshelf
 
 import org.junit.Test
 
